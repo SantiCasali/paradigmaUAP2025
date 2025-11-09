@@ -76,8 +76,7 @@ esHoja arbol =
 tamano : Tree a -> Int
 tamano arbol =
     case arbol of
-        Empty ->
-            0
+        Empty -> 0
 
         Node _ l r ->
             1 + tamano l + tamano r
@@ -88,11 +87,9 @@ tamano arbol =
 altura : Tree a -> Int
 altura arbol =
     case arbol of
-        Empty ->
-            0
+        Empty -> 0
 
-        Node _ l r ->
-            1 + max (altura l) (altura r)
+        Node _ l r -> 1 + max (altura l) (altura r)
 
 
 -- 6. Suma de Valores
@@ -100,11 +97,9 @@ altura arbol =
 sumarArbol : Tree Int -> Int
 sumarArbol arbol =
     case arbol of
-        Empty ->
-            0
+        Empty -> 0
 
-        Node v l r ->
-            v + sumarArbol l + sumarArbol r
+        Node v l r -> v + sumarArbol l + sumarArbol r
 
 
 -- 7. Contiene Valor
@@ -293,8 +288,12 @@ obtenerSubarbol valor arbol =
             if v == valor then
                 Just arbol
             else
-                obtenerSubarbol valor l
-                    |> Maybe.orElse (obtenerSubarbol valor r)
+                case obtenerSubarbol valor l of
+                    Just subarbolIzquierdo ->
+                        Just subarbolIzquierdo
+
+                    Nothing ->
+                        obtenerSubarbol valor r
 
 
 buscarEnSubarbol : a -> a -> Tree a -> Maybe a
