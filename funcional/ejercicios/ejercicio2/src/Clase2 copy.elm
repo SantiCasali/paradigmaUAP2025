@@ -34,6 +34,8 @@ en lugar de usar Maybe. Trabajamos con List en lugar del List de Scala.
 
 concatenar : List Int -> List Int -> List Int
 concatenar lista1 lista2 =
+    if isEmpty lista1 then lista2
+    else (head lista1) :: concatenar (tail lista1) lista2
     
 
 
@@ -45,7 +47,11 @@ concatenar lista1 lista2 =
 
 buscar : List Int -> (Int -> Int -> Bool) -> Int
 buscar lista com = 
-    case [] of 0
+    case lista of [] -> 0
+    [x] -> x
+
+    h :: t ->
+    buscar t 
     
 
 
@@ -141,7 +147,8 @@ contar lista =
 
 acc : List Int -> Int
 acc lista =
-    0
+     case lista of [] -> 0
+     
 
 
 
